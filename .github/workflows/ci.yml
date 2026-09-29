@@ -3,6 +3,9 @@ name: CI
 on:
   push:
     branches: [main]
+    # Release tags must be listed here as well: a `branches`-only filter never
+    # matches a tag push, which would leave the publish job unreachable.
+    tags: ['v*']
   pull_request:
   workflow_dispatch:
 
@@ -73,6 +76,16 @@ jobs:
           fi
 
       - name: Publish
-        run: npm publish --provenance
+        run: |
+          # The version may already be on the registry when a release is cut by
+          # hand rather than by tagging. Publishing the same version twice is an
+          # error, so check first and skip instead of failing the run.
+          # The name prefix is required: `npm view <version>` would look for a
+          # package literally named "1.2.3" and always return 404.
+          if npm view "$(node -p "require('./package.json').name")@$PKG_VERSION" version >/dev/null 2>&1; then
+            echo "Version $PKG_VERSION is already published to npm. Skipping."
+            exit 0
+          fi
+          npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
