@@ -51,12 +51,12 @@
     "cursor",
     "automation"
   ],
-  "homepage": "https://github.com/OWNER/aapanel-mcp#readme",
+  "homepage": "https://github.com/devochkaskustikom/aapanel-mcp#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OWNER/aapanel-mcp.git"
+    "url": "git+https://github.com/devochkaskustikom/aapanel-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/OWNER/aapanel-mcp/issues"
+    "url": "https://github.com/devochkaskustikom/aapanel-mcp/issues"
   }
 }

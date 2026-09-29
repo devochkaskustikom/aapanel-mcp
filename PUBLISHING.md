@@ -2,29 +2,21 @@
 
 ## One-time setup
 
-**1. GitHub repository.** `gh` is not installed here, so create the repo in the
-browser or install the CLI first:
+**1. GitHub repository.** `gh` is not installed, so the remote is already wired
+up to `https://github.com/devochkaskustikom/aapanel-mcp.git`. Create the
+repository in the browser — an **empty** one, with no README, license or
+.gitignore, since this project already has all three — then push:
 
 ```bash
-gh auth login
-gh repo create aapanel-mcp --public --source=. --remote=origin --push
-```
-
-If you prefer the browser: create an empty repository named `aapanel-mcp`,
-**do not** add a README or .gitignore (this project already has both), then:
-
-```bash
-git remote add origin https://github.com/<you>/aapanel-mcp.git
+cd /path/to/aapanel-mcp
 git push -u origin main
 ```
 
-Then update the `OWNER` placeholders in `package.json`:
+The `homepage`, `repository` and `bugs` fields in `package.json` already point
+at this account, so nothing else needs editing.
 
-```bash
-npm pkg set homepage="https://github.com/<you>/aapanel-mcp#readme"
-npm pkg set repository.url="git+https://github.com/<you>/aapanel-mcp.git"
-npm pkg set bugs.url="https://github.com/<you>/aapanel-mcp/issues"
-```
+If you would rather install the GitHub CLI, `winget install --id GitHub.cli`
+gives you `gh auth login` and `gh repo create` for future use.
 
 **2. npm login.** This machine is not logged in yet:
 

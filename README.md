@@ -40,7 +40,7 @@ The `aapanel-mcp` binary is the server. Requires Node 20.10 or newer.
 ### From source
 
 ```bash
-git clone https://github.com/OWNER/aapanel-mcp.git
+git clone https://github.com/devochkaskustikom/aapanel-mcp.git
 cd aapanel-mcp
 npm install
 npm run build
