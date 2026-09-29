@@ -1,6 +1,6 @@
 {
   "name": "aapanel-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "MCP server for the aaPanel (btPanel fork) API: 57 described tools and 3 resources for AI CLI agents, with request signing, a session cookie jar, read-only mode and destructive-operation gating.",
   "main": "dist/src/index.js",
   "scripts": {
