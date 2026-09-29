@@ -1,0 +1,8 @@
+{
+  "panelUrl": "https://your-panel.example.com:8888",
+  "apiKey": "paste-your-api-interface-key-here",
+  "readOnly": true,
+  "timeoutMs": 60000,
+  "allowSelfSigned": false,
+  "allowDangerous": false
+}

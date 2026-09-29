@@ -1,0 +1,62 @@
+{
+  "name": "aapanel-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the aaPanel (btPanel fork) API: 57 described tools and 3 resources for AI CLI agents, with request signing, a session cookie jar, read-only mode and destructive-operation gating.",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run typecheck && tsc -p tsconfig.json && node --test --test-reporter=spec \"dist/test/**/*.test.js\"",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test"
+  },
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.31.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "bin": {
+    "aapanel-mcp": "dist/src/index.js"
+  },
+  "files": [
+    "dist/src",
+    "README.md",
+    "LICENSE",
+    "aapanel.config.example.json"
+  ],
+  "engines": {
+    "node": ">=20.10"
+  },
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "aapanel",
+    "btpanel",
+    "baota",
+    "hosting",
+    "webserver",
+    "mysql",
+    "nginx",
+    "ai-agent",
+    "llm",
+    "claude",
+    "cursor",
+    "automation"
+  ],
+  "homepage": "https://github.com/OWNER/aapanel-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OWNER/aapanel-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OWNER/aapanel-mcp/issues"
+  }
+}
