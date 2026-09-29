@@ -7,7 +7,7 @@
     "build": "tsc -p tsconfig.json",
     "dev": "tsx src/index.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run typecheck && tsc -p tsconfig.json && node --test --test-reporter=spec \"dist/test/**/*.test.js\"",
+    "test": "npm run typecheck && tsc -p tsconfig.json && node --test dist/test/run.js",
     "prepare": "npm run build",
     "prepublishOnly": "npm run test"
   },

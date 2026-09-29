@@ -7,7 +7,7 @@ The panel speaks a signature-based API that no generic HTTP MCP client can use:
 authentication is a per-request MD5 signature rather than a header, and the
 caller is expected to keep a session cookie across calls. This server
 implements that protocol once, correctly, and exposes it as **57 described
-tools** plus **3 resources**.
+panel operations** plus 2 meta tools and 3 resources.
 
 ## Why the tools are not generic
 
@@ -18,12 +18,33 @@ the request leaves the process.
 
 ## Install
 
+### With npx, no install step
+
 ```bash
+npx aapanel-mcp
+```
+
+Point it at a panel and it will negotiate MCP over stdio on stdin/stdout, which
+is what a CLI agent launches as a subprocess.
+
+### As a dependency
+
+```bash
+npm install -g aapanel-mcp
+# or, per project:
+npm install aapanel-mcp
+```
+
+The `aapanel-mcp` binary is the server. Requires Node 20.10 or newer.
+
+### From source
+
+```bash
+git clone https://github.com/OWNER/aapanel-mcp.git
+cd aapanel-mcp
 npm install
 npm run build
 ```
-
-Requires Node 20 or newer.
 
 ## Configure the panel
 
@@ -90,14 +111,13 @@ transcript.
 
 ### ZCode / Claude Code / Cursor (stdio)
 
-Add to the client config, pointing `command` at your `node`:
+Installed globally, the binary is on `PATH`:
 
 ```json
 {
   "mcpServers": {
     "aapanel": {
-      "command": "node",
-      "args": ["/absolute/path/to/aapanel-mcp/dist/src/index.js"],
+      "command": "aapanel-mcp",
       "env": {
         "AAPANEL_PANEL_URL": "https://your-panel.example.com:8888",
         "AAPANEL_API_KEY": "your-api-interface-key",
@@ -107,6 +127,27 @@ Add to the client config, pointing `command` at your `node`:
   }
 }
 ```
+
+Installed per project, point `command` at your `node` and the build output:
+
+```json
+{
+  "mcpServers": {
+    "aapanel": {
+      "command": "node",
+      "args": ["/absolute/path/to/node_modules/aapanel-mcp/dist/src/index.js"],
+      "env": {
+        "AAPANEL_PANEL_URL": "https://your-panel.example.com:8888",
+        "AAPANEL_API_KEY": "your-api-interface-key",
+        "AAPANEL_READ_ONLY": "true"
+      }
+    }
+  }
+}
+```
+
+Either way, the panel is contacted over HTTP from wherever the agent runs, so
+that host's IP must be on the panel's whitelist.
 
 Set `AAPANEL_READ_ONLY` to `"false"` only once you trust the agent with
 production changes. When you do, keep `AAPANEL_ALLOW_DANGEROUS` at `"false"`.
